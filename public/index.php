@@ -4,8 +4,26 @@ use App\Kernel;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\HttpFoundation\Request;
-
+use app\Controller\MainController;
 require __DIR__.'/../vendor/autoload.php';
+
+//basic setup
+require_once __DIR__ . '/../app/setup.php';
+
+
+// retrieve ‘action’ from GET
+// ------------
+$action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
+
+//// create controller object and call action method
+//// ------------
+//$mainController = new MainController();
+//if ('about' == $action){
+//    $mainController->aboutAction($twig);
+//} else {
+//    $mainController->indexAction($twig);
+//}
+
 
 // The check is to ensure we don't use .env in production
 if (!isset($_SERVER['APP_ENV'])) {
