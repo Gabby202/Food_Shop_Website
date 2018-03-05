@@ -16,4 +16,15 @@ class MainController extends Controller
             'controller_name' => 'MainController',
         ]);
     }
+
+    /**
+     * @Route("/crud", name="main_crud")
+     */
+    public function crud()
+    {
+        return $this->render('main/crud.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
+
 }

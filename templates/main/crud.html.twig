@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+    <div class="example-wrapper">
+        <h1>Home Page</h1>
+
+        <ul>
+            <a href="{{ path('product_index') }}">Products</a>
+            <a href="{{ path('category_index') }}">Categories</a>
+        </ul>
+
+    </div>
+{% endblock %}
