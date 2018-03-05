@@ -18,4 +18,15 @@ class AdminController extends Controller
         $args = [];
         return $this->render($template, $args);
     }
+
+    /**
+     * @Route("/crud", name="admin_crud")
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function crud()
+    {
+        return $this->render('admin/crud.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
 }

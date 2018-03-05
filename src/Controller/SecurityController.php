@@ -28,4 +28,16 @@ class SecurityController extends Controller
         return $this->render($template, $args);
 
     }
+
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logout(Request $request, AuthenticationUtils $authUtils)
+    {
+        $template = 'security/logout.html.twig';
+
+        return $this->render($template);
+
+    }
+
 }

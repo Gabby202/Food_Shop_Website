@@ -1,84 +1,65 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Gabby
- * Date: 3/5/2018
- * Time: 10:46 AM
+ * User: Agata
+ * Date: 05/03/2018
+ * Time: 10:46
  */
 
 namespace App\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-
 /**
  * @ORM\Table(name="app_users")
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository") */
+class User implements UserInterface, \Serializable {/**
+ * @ORM\Column(type="integer") * @ORM\Id
+151
+ * @ORM\GeneratedValue(strategy="AUTO")
  */
-class User implements UserInterface, \Serializable{
-
-
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id* @ORM\GeneratedValue(strategy="AUTO")
-     */
     private $id;
-
     /**
-     * @ORM\Column(type="string", length=25, unique=true)
-     */
+     * @ORM\Column(type="string", length=25, unique=true) */
     private $username;
-
     /**
-     * @ORM\Column(type="string", length=64)
-     */
+     * @ORM\Column(type="string", length=64) */
     private $password;
-
     /**
-     * @ORM\Column(type="json_array")
-     */
+     * @ORM\Column(type="json_array") */
     private $roles = [];
 
-    public function getSalt()
-    {
-    // no salt needed since we are using bcrypt
+    public function getSalt() {
+        // no salt needed since we are using bcrypt
         return null;
     }
-
-    public function eraseCredentials()
-    {
-
+    public function eraseCredentials() {
     }
 
     /** @see \Serializable::serialize() */
-    public function serialize()
-    {
-        return serialize(array(
-            $this->id,
-            $this->username,
-            $this->password,
-        ));
+    public function serialize(){
+    return serialize(array( $this->id,
+        $this->username,
+        $this->password, ));
     }
 
     /** @see \Serializable::unserialize() */
-    public function unserialize($serialized)
-    {
-        list (
-            $this->id,
-            $this->username,
-            $this->password,
-            ) = unserialize($serialized);
+    public function unserialize($serialized) {
+    list ( $this->id,
+        $this->username,
+        $this->password,
+        ) = unserialize($serialized);
     }
 
-    public function getRoles()
-    {
+    public function getRoles() {
+
         $roles = $this->roles;
-// ensure always contains ROLE_USER
-        $roles[] = 'ROLE_USER';
+        // ensure always contains ROLE_USER $roles[] = 'ROLE_USER';
         return array_unique($roles);
     }
-    public function setRoles($roles)
-    {
+
+    public function setRoles($roles) {
         $this->roles = $roles;
         return $this;
     }
