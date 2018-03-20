@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0a64b603-4072-4100-ae8d-05ea11e8333c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/templates/main/index.html.twig" afterPath="$PROJECT_DIR$/templates/main/index.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -405,12 +404,12 @@
       <workItem from="1520330702283" duration="2241000" />
       <workItem from="1520603367176" duration="2986000" />
       <workItem from="1521538340910" duration="4763000" />
-      <workItem from="1521543550789" duration="103000" />
+      <workItem from="1521543550789" duration="190000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24809000" />
+    <option name="totallyTimeSpent" value="24896000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
