@@ -34,8 +34,25 @@ class Category
     }
 
     /**
+     * @return mixed
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param mixed $products
+     */
+    public function setProducts($products): void
+    {
+        $this->products = $products;
+    }
+
+    /**
      * @ORM\Column(type="string")
      */
+
     private $name;
 
     /**
@@ -49,20 +66,18 @@ class Category
     /**
      * @param mixed $name
      */
-    public function setName($name): void
+    public function setName($name)
     {
         $this->name = $name;
     }
 
-
-    /**
-    /**
+    /** /**
      * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="category")
      */
     private $products;
-    public function __construct()
-    {
+
+    public function __construct() {
+
         $this->products = new ArrayCollection();
     }
-
 }

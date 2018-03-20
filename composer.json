@@ -51,8 +51,7 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
-            "php bin/console server:run": "composer run"
+            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"
@@ -66,7 +65,7 @@
     },
     "extra": {
         "symfony": {
-            "id": "01C7B8X3AEJPFFFQ62BSSJMRBA",
+            "id": "01C7B916S4VD3R6D5B9MWNGCSY",
             "allow-contrib": false
         }
     }

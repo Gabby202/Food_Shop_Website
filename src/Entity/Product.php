@@ -3,15 +3,16 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
+
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
  */
+
+
 class Product
 {
-
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -20,17 +21,8 @@ class Product
     private $id;
 
     /**
-     * @ORM\Column(type="string")
-     */
+     * @ORM\Column(type="string") */
     private $description;
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $image;
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $price;
 
     /**
      * @return mixed
@@ -43,7 +35,7 @@ class Product
     /**
      * @param mixed $id
      */
-    public function setId($id): void
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -59,7 +51,7 @@ class Product
     /**
      * @param mixed $description
      */
-    public function setDescription($description): void
+    public function setDescription($description)
     {
         $this->description = $description;
     }
@@ -75,7 +67,7 @@ class Product
     /**
      * @param mixed $image
      */
-    public function setImage($image): void
+    public function setImage($image)
     {
         $this->image = $image;
     }
@@ -91,27 +83,37 @@ class Product
     /**
      * @param mixed $price
      */
-    public function setPrice($price): void
+    public function setPrice($price)
     {
         $this->price = $price;
     }
-
+    /**
+     * @ORM\Column(type="string") */
+    private $image;
+    /**
+     * @ORM\Column(type="float") */
+    private $price;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products") * @ORM\JoinColumn(nullable=true)
      */
     private $category;
-    public function getCategory(): ?Category
-    {
 
+    public function getCategory(): ?Category {
         return $this->category;
     }
-    public function setCategory(Category $category = null)
-    {
+    public function setCategory(Category $category = null) {
         $this->category = $category;
     }
-    // add your own fields
+
+
+
+
+
+
+
 
 
 }
+
+

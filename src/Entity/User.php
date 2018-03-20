@@ -11,21 +11,27 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * @ORM\Table(name="app_users")
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository") */
-class User implements UserInterface, \Serializable {/**
- * @ORM\Column(type="integer") * @ORM\Id
-151
- * @ORM\GeneratedValue(strategy="AUTO")
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
+class User implements UserInterface, \Serializable {
+
+    /**
+     * @ORM\Column(type="integer") * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
     private $id;
+
     /**
      * @ORM\Column(type="string", length=25, unique=true) */
     private $username;
+
     /**
      * @ORM\Column(type="string", length=64) */
     private $password;
+
     /**
      * @ORM\Column(type="json_array") */
     private $roles = [];
@@ -39,17 +45,17 @@ class User implements UserInterface, \Serializable {/**
 
     /** @see \Serializable::serialize() */
     public function serialize(){
-    return serialize(array( $this->id,
-        $this->username,
-        $this->password, ));
+        return serialize(array( $this->id,
+            $this->username,
+            $this->password, ));
     }
 
     /** @see \Serializable::unserialize() */
     public function unserialize($serialized) {
-    list ( $this->id,
-        $this->username,
-        $this->password,
-        ) = unserialize($serialized);
+        list ( $this->id,
+            $this->username,
+            $this->password,
+            ) = unserialize($serialized);
     }
 
     public function getRoles() {
@@ -65,25 +71,52 @@ class User implements UserInterface, \Serializable {/**
     }
 
     /**
-     * Returns the password used to authenticate the user.
-     *
-     * This should be the encoded password. On authentication, a plain-text
-     * password will be salted, encoded, and then compared to this value.
-     *
-     * @return string The password
+     * @return mixed
      */
-    public function getPassword()
+    public function getId()
     {
-        // TODO: Implement getPassword() method.
+        return $this->id;
     }
 
     /**
-     * Returns the username used to authenticate the user.
-     *
-     * @return string The username
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
      */
     public function getUsername()
     {
-        // TODO: Implement getUsername() method.
+        return $this->username;
     }
+
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username): void
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password): void
+    {
+        $this->password = $password;
+    }
+
+
 }

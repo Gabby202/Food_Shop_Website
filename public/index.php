@@ -4,15 +4,8 @@ use App\Kernel;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\HttpFoundation\Request;
-use App\Controller\MainController;
+
 require __DIR__.'/../vendor/autoload.php';
-
-//basic setup
-// retrieve ‘action’ from GET
-// ------------
-$action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
-
-
 
 // The check is to ensure we don't use .env in production
 if (!isset($_SERVER['APP_ENV'])) {
