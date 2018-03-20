@@ -24,12 +24,12 @@ class LoadUsers extends Fixture
         // create objects
         $userUser = $this->createUser('user', 'user');
         $userAdmin = $this->createUser('admin', 'admin', ['ROLE_ADMIN']);
-        $userMatt = $this->createUser('matt', 'smith', ['ROLE_ADMIN']);
+        $userGabby = $this->createUser('gabby', 'gabby', ['ROLE_SUPER_ADMIN']);
 
         // store to DB
         $manager->persist($userUser);
         $manager->persist($userAdmin);
-        $manager->persist($userMatt);
+        $manager->persist($userGabby);
         $manager->flush();
     }
 
