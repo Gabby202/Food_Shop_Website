@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20180306103758 extends AbstractMigration
+class Version20180402164902 extends AbstractMigration
 {
     public function up(Schema $schema)
     {
@@ -18,6 +18,7 @@ class Version20180306103758 extends AbstractMigration
         $this->addSql('CREATE TABLE category (id INTEGER NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE product (id INTEGER NOT NULL, category_id INTEGER DEFAULT NULL, description VARCHAR(255) NOT NULL, image VARCHAR(255) NOT NULL, price DOUBLE PRECISION NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_D34A04AD12469DE2 ON product (category_id)');
+        $this->addSql('CREATE TABLE review (id INTEGER NOT NULL, username VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, rating INTEGER NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE app_users (id INTEGER NOT NULL, username VARCHAR(25) NOT NULL, password VARCHAR(64) NOT NULL, roles CLOB NOT NULL --(DC2Type:json_array)
         , PRIMARY KEY(id))');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_C2502824F85E0677 ON app_users (username)');
@@ -30,6 +31,7 @@ class Version20180306103758 extends AbstractMigration
 
         $this->addSql('DROP TABLE category');
         $this->addSql('DROP TABLE product');
+        $this->addSql('DROP TABLE review');
         $this->addSql('DROP TABLE app_users');
     }
 }
