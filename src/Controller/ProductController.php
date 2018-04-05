@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/product", name="product_")
@@ -32,6 +33,7 @@ class ProductController extends Controller
     /**
      * @Route("/new", name="new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function new(Request $request)
     {
@@ -67,6 +69,7 @@ class ProductController extends Controller
     /**
      * @Route("/{id}/edit", name="edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function edit(Request $request, Product $product)
     {
@@ -88,6 +91,7 @@ class ProductController extends Controller
     /**
      * @Route("/{id}", name="delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function delete(Request $request, Product $product)
     {

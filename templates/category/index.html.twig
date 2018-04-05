@@ -5,7 +5,7 @@
 {% block body %}
 
     <h1>Category index</h1>
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
@@ -20,7 +20,9 @@
                 <td>{{ category.name }}</td>
                 <td>
                     <a href="{{ path('category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('category_edit', {'id': category.id}) }}">edit</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('category_edit', {'id': category.id}) }}">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

@@ -5,20 +5,23 @@
 {% block body %}
 
     <h1>Review index</h1>
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>user</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for review in reviews %}
             <tr>
-                <td>{{ review.id }}</td>
-                <td>z
+                <td>{{ review.username }}</td>
+                <td>
                     <a href="{{ path('review_show', {'id': review.id}) }}">show</a>
-                    <a href="{{ path('review_edit', {'id': review.id}) }}">edit</a>
+
+                {% if is_granted('ROLE_ADMIN') %}
+                     <a href="{{ path('review_edit', {'id': review.id}) }}">edit</a>
+                {% endif %}
                 </td>
             </tr>
         {% else %}

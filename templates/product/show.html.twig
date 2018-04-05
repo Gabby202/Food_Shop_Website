@@ -4,9 +4,9 @@
 
 {% block body %}
 
-    <h1>Product</h1>
+    <h3>Product</h3>
 
-    <table>
+    <table class="table table-striped">
         <tr>
             <th>Id</th>
             <td>{{ product.id }}</td>
@@ -19,32 +19,47 @@
             <th>Image</th>
             <td>{{ product.image }}</td>
         </tr>
-        <tr>
-            <th>Price</th>
-            <td>{{ product.price }}</td>
-        </tr>
 
         <tr>
             <th>Category</th>
             <td>{{ product.category.name }}</td>
         </tr>
-    </table>
 
-    <table>
-        <th>Reviews for this Product</th>
-        <td>
-            {% for review in product.reviews %}
-                {{ review.id }} :: {{ review.description }}
-                <br>
-            {% else %}
-                (no reviews for this product)
-            {% endfor %}
-        </td>
+        <tr>
+            <th>Price Range</th>
+            <td>{{ product.price.range }}</td>
+        </tr>
+    </table>
+    <br>
+
+    <h3>Reviews</h3>
+    <a href="{{ path('review_new') }}">write review</a>
+
+    <table class="table table-striped">
+        <tr>
+            <th>User</th>
+            <th>Description</th>
+            <th>Rating</th>
+        </tr>
+        {% for review in product.reviews %}
+            <tr>
+                <td>{{ review.username }}</td>
+                <td>{{ review.description }}</td>
+                <td>{{ review.rating }}</td>
+
+            </tr>
+            <br>
+        {% else %}
+            (no reviews for this product)
+        {% endfor %}
+
     </table>
     <a href="{{ path('product_index') }}">back to list</a>
-    <a href="{{ path('review_new') }}">write review</a>
-    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
 
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+    {% endif %}
     {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
         {% include 'product/_delete_form.html.twig' with {'identifier': product.id} only %}

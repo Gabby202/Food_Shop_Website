@@ -74,27 +74,15 @@ class Product
         $this->image = $image;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
 
-    /**
-     * @param mixed $price
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-    }
     /**
      * @ORM\Column(type="string") */
     private $image;
-    /**
-     * @ORM\Column(type="float") */
-    private $price;
+
+
+
+
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products") * @ORM\JoinColumn(nullable=true)
@@ -149,7 +137,20 @@ class Product
 
 
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Price", inversedBy="products") * @ORM\JoinColumn(nullable=true)
+     */
+    private $price;
 
+    // allow null - ?Price vs Price
+    public function getPrice(): ?Price {
+        return $this->price;
+    }
+
+    // default Category to null
+    public function setPrice(Price $price = null) {
+        $this->price = $price;
+    }
 
 }
 

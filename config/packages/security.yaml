@@ -1,7 +1,9 @@
 security:
     role_hierarchy:
+                ROLE_USER:        ROLE_PUBLIC
                 ROLE_ADMIN:       ROLE_USER
                 ROLE_SUPER_ADMIN: ROLE_ADMIN
+
 
     providers:
         our_db_provider:

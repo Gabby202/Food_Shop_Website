@@ -23,7 +23,6 @@ class ReviewType extends AbstractType
                 // use the 'Category.name' property as the visible option string
                 'choice_label' => 'description',
             ]);;
-
     }
 
     public function configureOptions(OptionsResolver $resolver)
