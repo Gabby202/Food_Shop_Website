@@ -3,10 +3,12 @@
 {% block title %}Category{% endblock %}
 
 {% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
 
     <h1>Category</h1>
 
-    <table class="table table-striped">
+
+        <table class="table table-striped">
         <th>Id</th>
         <td>{{ category.id }}</td>
         </tr>
@@ -14,6 +16,7 @@
             <th>Name</th>
             <td>{{ category.name }}</td>
         </tr>
+    {% endif %}
 
     </table>
     <h3>Products in this category</h3>
@@ -21,11 +24,13 @@
         <tr>
             <th>id</th>
             <th>Description</th>
+            <th>Actions</th>
         </tr>
         {% for product in category.products %}
             <tr>
                 <td>{{ product.id }}</td>
                 <td>{{ product.description }}</td>
+                <td><a href="{{ path('product_show', {'id': product.id}) }}">show</a></td>
 
             </tr>
             <br>

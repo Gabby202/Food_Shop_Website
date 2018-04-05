@@ -60,6 +60,22 @@ class Price
      * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="price")
      */
     private $products;
+
+    /**
+     * @return mixed
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param mixed $products
+     */
+    public function setProducts($products): void
+    {
+        $this->products = $products;
+    }
     public function __construct()
     {
         $this->products = new ArrayCollection();

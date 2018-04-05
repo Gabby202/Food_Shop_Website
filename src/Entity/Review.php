@@ -92,6 +92,27 @@ class Review
     /**
      * @ORM\Column(type="integer")
      */
+    private $price;
+
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price): void
+    {
+        $this->price = $price;
+    }
+
+    /**
+     * @ORM\Column(type="decimal")
+     */
     private $rating;
 
     /**

@@ -1,26 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Price index{% endblock %}
+{% block title %}Search by price{% endblock %}
 
 {% block body %}
 
-    <h1>Price index</h1>
-    <table>
+    <h1>Search by price</h1>
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Range</th>
+                <th>price range</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for price in prices %}
             <tr>
-                <td>{{ price.id }}</td>
                 <td>{{ price.range }}</td>
                 <td>
-                    <a href="{{ path('price_show', {'id': price.id}) }}">show</a>
-                    <a href="{{ path('price_edit', {'id': price.id}) }}">edit</a>
+                    <a href="{{ path('price_show', {'id': price.id}) }}">show products</a>
+                 {% if is_granted('ROLE_ADMIN') %}
+                     <a href="{{ path('price_edit', {'id': price.id}) }}">edit</a>
+                 {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -30,6 +30,8 @@
         {% endfor %}
         </tbody>
     </table>
-    <a href="{{ path('price_new') }}">Create new</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('price_new') }}">Create new</a>
+    {% endif %}
 
 {% endblock %}

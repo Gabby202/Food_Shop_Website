@@ -3,35 +3,36 @@
 {% block title %}Product{% endblock %}
 
 {% block body %}
+        <h3>Product</h3>
 
-    <h3>Product</h3>
+        <table class="table table-striped">
+        {% if is_granted('ROLE_ADMIN') %}
 
-    <table class="table table-striped">
-        <tr>
-            <th>Id</th>
-            <td>{{ product.id }}</td>
-        </tr>
-        <tr>
-            <th>Description</th>
-            <td>{{ product.description }}</td>
-        </tr>
-        <tr>
-            <th>Image</th>
-            <td>{{ product.image }}</td>
-        </tr>
+             <tr>
+                <th>Id</th>
+                <td>{{ product.id }}</td>
+            </tr>
+        {% endif %}
+            <tr>
+                <th>Description</th>
+                <td>{{ product.description }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ product.image }}</td>
+            </tr>
 
-        <tr>
-            <th>Category</th>
-            <td>{{ product.category.name }}</td>
-        </tr>
+            <tr>
+                <th>Category</th>
+                <td>{{ product.category.name }}</td>
+            </tr>
 
-        <tr>
-            <th>Price Range</th>
-            <td>{{ product.price.range }}</td>
-        </tr>
-    </table>
-    <br>
-
+            <tr>
+                <th>Price Range</th>
+                <td>{{ product.price.range }}</td>
+            </tr>
+        </table>
+        <br>
     <h3>Reviews</h3>
     <a href="{{ path('review_new') }}">write review</a>
 
@@ -40,12 +41,15 @@
             <th>User</th>
             <th>Description</th>
             <th>Rating</th>
+            <th>Price Paid</th>
+
         </tr>
         {% for review in product.reviews %}
             <tr>
                 <td>{{ review.username }}</td>
                 <td>{{ review.description }}</td>
                 <td>{{ review.rating }}</td>
+                <td>{{ review.price }}</td>
 
             </tr>
             <br>
@@ -57,9 +61,6 @@
     <a href="{{ path('product_index') }}">back to list</a>
 
 
-    {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
-    {% endif %}
     {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
         {% include 'product/_delete_form.html.twig' with {'identifier': product.id} only %}

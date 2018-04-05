@@ -17,12 +17,13 @@ class ReviewType extends AbstractType
             ->add('username')
             ->add('description')
             ->add('rating')
+            ->add('price')
             ->add('product', EntityType::class, [
                 // list objects from this class
                 'class' => 'App:Product',
                 // use the 'Category.name' property as the visible option string
                 'choice_label' => 'description',
-            ]);;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
