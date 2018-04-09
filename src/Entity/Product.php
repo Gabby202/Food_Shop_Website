@@ -132,8 +132,48 @@ class Product
 
         $this->reviews = new ArrayCollection();
     }
+    /**
+     * @ORM\Column(type="string") */
+    private $username;
+
+    /**
+     * @return mixed
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username): void
+    {
+        $this->username = $username;
+    }
 
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="products") * @ORM\JoinColumn(nullable=true)
+     */
+    private $user;
+
+    /**
+     * @return mixed
+     */
+    public function getUser():?User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user): void
+    {
+        $this->user = $user;
+    }
 
 
 

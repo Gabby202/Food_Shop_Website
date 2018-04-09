@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20180405221134 extends AbstractMigration
+class Version20180409093404 extends AbstractMigration
 {
     public function up(Schema $schema)
     {
@@ -17,10 +17,11 @@ class Version20180405221134 extends AbstractMigration
 
         $this->addSql('CREATE TABLE category (id INTEGER NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE price (id INTEGER NOT NULL, range VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE TABLE product (id INTEGER NOT NULL, category_id INTEGER DEFAULT NULL, price_id INTEGER DEFAULT NULL, description VARCHAR(255) NOT NULL, image VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE product (id INTEGER NOT NULL, category_id INTEGER DEFAULT NULL, user_id INTEGER DEFAULT NULL, price_id INTEGER DEFAULT NULL, description VARCHAR(255) NOT NULL, image VARCHAR(255) NOT NULL, username VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_D34A04AD12469DE2 ON product (category_id)');
+        $this->addSql('CREATE INDEX IDX_D34A04ADA76ED395 ON product (user_id)');
         $this->addSql('CREATE INDEX IDX_D34A04ADD614C7E7 ON product (price_id)');
-        $this->addSql('CREATE TABLE review (id INTEGER NOT NULL, product_id INTEGER DEFAULT NULL, username VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, rating INTEGER NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE review (id INTEGER NOT NULL, product_id INTEGER DEFAULT NULL, username VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, price INTEGER NOT NULL, rating DOUBLE PRECISION NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_794381C64584665A ON review (product_id)');
         $this->addSql('CREATE TABLE app_users (id INTEGER NOT NULL, username VARCHAR(25) NOT NULL, password VARCHAR(64) NOT NULL, roles CLOB NOT NULL --(DC2Type:json_array)
         , PRIMARY KEY(id))');

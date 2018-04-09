@@ -111,7 +111,7 @@ class Review
     }
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="float")
      */
     private $rating;
 

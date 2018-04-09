@@ -33,12 +33,13 @@ class ProductController extends Controller
     /**
      * @Route("/new", name="new")
      * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_USER')")
      */
     public function new(Request $request)
     {
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
+        $form->get('username')->setData($this->getUser()->getUsername());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -69,7 +70,7 @@ class ProductController extends Controller
     /**
      * @Route("/{id}/edit", name="edit")
      * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_USER')")
      */
     public function edit(Request $request, Product $product)
     {
@@ -91,7 +92,7 @@ class ProductController extends Controller
     /**
      * @Route("/{id}", name="delete")
      * @Method("DELETE")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_USER')")
      */
     public function delete(Request $request, Product $product)
     {

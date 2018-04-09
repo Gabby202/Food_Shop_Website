@@ -48,8 +48,45 @@
             <tr>
                 <td>{{ review.username }}</td>
                 <td>{{ review.description }}</td>
-                <td>{{ review.rating }}</td>
-                <td>{{ review.price }}</td>
+                <td>
+                    {% if review.rating == 0.5 %}
+                        <span class="fa fa-star-half checked"></span>
+                    {% endif %}
+                    {% if review.rating >=1 %}
+                        <span class="fa fa-star checked"></span>
+                    {% endif %}
+                    {% if review.rating == 1.5 %}
+                        <span class="fa fa-star-half checked"></span>
+                    {% endif %}
+                    {% if review.rating >=2 %}
+                        <span class="fa fa-star checked"></span>
+                    {% endif %}
+                    {% if review.rating == 2.5 %}
+                        <span class="fa fa-star-half checked"></span>
+                    {% endif %}
+                    {% if review.rating >=3 %}
+                        <span class="fa fa-star checked"></span>
+                    {% endif %}
+                    {% if review.rating == 3.5 %}
+                        <span class="fa fa-star-half checked"></span>
+                    {% endif %}
+                    {% if review.rating >=4 %}
+                        <span class="fa fa-star checked"></span>
+                    {% endif %}
+                    {% if review.rating == 4.5 %}
+                        <span class="fa fa-star-half checked"></span>
+                    {% endif %}
+                    {% if review.rating >=5 %}
+                        <span class="fa fa-star checked"></span>
+                    {% endif %}
+
+
+
+
+
+
+                </td>
+                <td>€{{ review.price }}</td>
 
             </tr>
             <br>

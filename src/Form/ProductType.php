@@ -7,11 +7,13 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 class ProductType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('username', \Symfony\Component\Form\Extension\Core\Type\HiddenType::class)
             ->add('description')
             ->add('image')
             ->add('category', EntityType::class, [

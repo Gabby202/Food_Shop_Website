@@ -14,7 +14,7 @@ class ReviewType extends AbstractType
     {
         $builder
 
-            ->add('username')
+            ->add('username', \Symfony\Component\Form\Extension\Core\Type\HiddenType::class)
             ->add('description')
             ->add('rating')
             ->add('price')

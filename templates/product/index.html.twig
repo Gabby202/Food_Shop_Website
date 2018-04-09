@@ -16,6 +16,7 @@
                 <th>Image</th>
                 <th>Category</th>
                 <th>Price Range</th>
+                <th>User</th>
                 <th>Actions</th>
 
             </tr>
@@ -31,12 +32,17 @@
                 <td>{{ product.image }}</td>
                 <td>{{ product.category.name }}</td>
                 <td>{{ product.price.range }}</td>
+                <td>{{ product.username }}</td>
 
                 <td>
                     <a href="{{ path('product_show', {'id': product.id}) }}">reviews</a>
 
                     {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+                    {% elseif is_granted('ROLE_USER') %}
+                        {% if product.username == app.user.username %}
+                            <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+                        {% endif %}
                     {% endif %}
                 </td>
             </tr>
@@ -44,7 +50,7 @@
         {% endfor %}
         </tbody>
     </table>
-    {% if is_granted('ROLE_ADMIN') %}
+    {% if is_granted('ROLE_USER') %}
         <a href="{{ path('product_new') }}">Create new</a>
     {% endif %}
 {% endblock %}
