@@ -39,6 +39,7 @@ class ReviewController extends Controller
     {
         $review = new Review();
         $form = $this->createForm(ReviewType::class, $review);
+        $form->get('username')->setData($this->getUser()->getUsername());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
