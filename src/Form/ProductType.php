@@ -15,13 +15,15 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('username', \Symfony\Component\Form\Extension\Core\Type\HiddenType::class)
-            ->add('description')
-            ->add('image')
-            ->add('brochure', FileType::class, [
+            ->add('title')
+            ->add('summary')
+            ->add('image', FileType::class, [
                 'label' => 'Brochure (PDF file)',
                 'data_class' => null,
                 'required' => false
             ])
+            ->add('description')
+            ->add('ingredients')
             ->add('category', EntityType::class, [
                 // list objects from this class
                 'class' => 'App:Category',

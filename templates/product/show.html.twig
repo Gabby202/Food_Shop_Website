@@ -14,13 +14,18 @@
             </tr>
         {% endif %}
             <tr>
+                <th>Title</th>
+                <td>{{ product.title }}</td>
+            </tr>
+            <tr>
+                <th>Summary</th>
+                <td>{{ product.summary }}</td>
+            </tr>
+            <tr>
                 <th>Description</th>
                 <td>{{ product.description }}</td>
             </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ product.image }}</td>
-            </tr>
+
 
             <tr>
                 <th>Category</th>
@@ -29,9 +34,12 @@
 
             <tr>
                 <th>Brochure</th>
-                <td>{{ product.brochure }}</td>
+                <td>{{ product.image }}</td>
             </tr>
-
+            <tr>
+                <th>Ingredients</th>
+                <td>{{ product.ingredients }}</td>
+            </tr>
             <tr>
                 <th>Price Range</th>
                 <td>{{ product.price.range }}</td>
@@ -39,71 +47,76 @@
         </table>
         <br>
     <h3>Reviews</h3>
-    <a href="{{ path('review_new') }}">write review</a>
 
-    <table class="table table-striped">
-        <tr>
-            <th>User</th>
-            <th>Description</th>
-            <th>Rating</th>
-            <th>Price Paid</th>
-            <th>Actions</th>
+    {% if is_granted('ROLE_USER') %}
+            <a href="{{ path('review_new') }}">write review</a>
 
-        </tr>
-        {% for review in product.reviews %}
+        <table class="table table-striped">
             <tr>
-                <td>{{ review.username }}</td>
-                <td>{{ review.description }}</td>
-                <td>
-                    {% if review.rating == 0.5 %}
-                        <span class="fa fa-star-half checked"></span>
-                    {% endif %}
-                    {% if review.rating >=1 %}
-                        <span class="fa fa-star checked"></span>
-                    {% endif %}
-                    {% if review.rating == 1.5 %}
-                        <span class="fa fa-star-half checked"></span>
-                    {% endif %}
-                    {% if review.rating >=2 %}
-                        <span class="fa fa-star checked"></span>
-                    {% endif %}
-                    {% if review.rating == 2.5 %}
-                        <span class="fa fa-star-half checked"></span>
-                    {% endif %}
-                    {% if review.rating >=3 %}
-                        <span class="fa fa-star checked"></span>
-                    {% endif %}
-                    {% if review.rating == 3.5 %}
-                        <span class="fa fa-star-half checked"></span>
-                    {% endif %}
-                    {% if review.rating >=4 %}
-                        <span class="fa fa-star checked"></span>
-                    {% endif %}
-                    {% if review.rating == 4.5 %}
-                        <span class="fa fa-star-half checked"></span>
-                    {% endif %}
-                    {% if review.rating >=5 %}
-                        <span class="fa fa-star checked"></span>
-                    {% endif %}
+                <th>User</th>
+                <th>Description</th>
+                <th>Rating</th>
+                <th>Price Paid</th>
+                <th>Retailers</th>
+                <th>Actions</th>
 
-                </td>
-                <td>€{{ review.price }}</td>
-
-                <td>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('review_edit', {'id': review.id}) }}">edit</a>
-                    {% elseif is_granted('ROLE_USER') %}
-                        {% if review.username == app.user.username %}
-                            <a href="{{ path('review_edit', {'id': review.id}) }}">edit</a>
-                        {% endif %}
-                    {% endif %}
-                </td>
             </tr>
-            <br>
-        {% else %}
-            (no reviews for this product)
-        {% endfor %}
+            {% for review in product.reviews %}
+                <tr>
+                    <td>{{ review.username }}</td>
+                    <td>{{ review.description }}</td>
+                    <td>
+                        {% if review.rating == 0.5 %}
+                            <span class="fa fa-star-half checked"></span>
+                        {% endif %}
+                        {% if review.rating >=1 %}
+                            <span class="fa fa-star checked"></span>
+                        {% endif %}
+                        {% if review.rating == 1.5 %}
+                            <span class="fa fa-star-half checked"></span>
+                        {% endif %}
+                        {% if review.rating >=2 %}
+                            <span class="fa fa-star checked"></span>
+                        {% endif %}
+                        {% if review.rating == 2.5 %}
+                            <span class="fa fa-star-half checked"></span>
+                        {% endif %}
+                        {% if review.rating >=3 %}
+                            <span class="fa fa-star checked"></span>
+                        {% endif %}
+                        {% if review.rating == 3.5 %}
+                            <span class="fa fa-star-half checked"></span>
+                        {% endif %}
+                        {% if review.rating >=4 %}
+                            <span class="fa fa-star checked"></span>
+                        {% endif %}
+                        {% if review.rating == 4.5 %}
+                            <span class="fa fa-star-half checked"></span>
+                        {% endif %}
+                        {% if review.rating >=5 %}
+                            <span class="fa fa-star checked"></span>
+                        {% endif %}
 
+                    </td>
+                    <td>€{{ review.price }}</td>
+                    <td>{{ review.retailers }}</td>
+                    <td>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('review_edit', {'id': review.id}) }}">edit</a>
+                        {% elseif is_granted('ROLE_USER') %}
+                            {% if review.username == app.user.username %}
+                                <a href="{{ path('review_edit', {'id': review.id}) }}">edit</a>
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                </tr>
+                <br>
+            {% else %}
+                (no reviews for this product)
+            {% endfor %}
+        {% else %}
+            Please log in to view reviews.
+        {% endif %}
     </table>
     <a href="{{ path('product_index') }}">back to list</a>
 

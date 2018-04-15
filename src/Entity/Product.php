@@ -59,29 +59,69 @@ class Product
         $this->description = $description;
     }
 
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $title;
+
     /**
      * @return mixed
      */
-    public function getImage()
+    public function getTitle()
     {
-        return $this->image;
+        return $this->title;
     }
 
     /**
-     * @param mixed $image
+     * @ORM\Column(type="string")
      */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    }
-
+    private $summary;
 
     /**
-     * @ORM\Column(type="string") */
-    private $image;
+     * @ORM\Column(type="string")
+     */
+    private $ingredients;
 
+    /**
+     * @return mixed
+     */
+    public function getIngredients()
+    {
+        return $this->ingredients;
+    }
 
+    /**
+     * @param mixed $ingredients
+     */
+    public function setIngredients($ingredients): void
+    {
+        $this->ingredients = $ingredients;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getSummary()
+    {
+        return $this->summary;
+    }
+
+    /**
+     * @param mixed $summary
+     */
+    public function setSummary($summary): void
+    {
+        $this->summary = $summary;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title): void
+    {
+        $this->title = $title;
+    }
 
 
 
@@ -196,19 +236,19 @@ class Product
     /**
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\NotBlank(message="Please, upload the image as a .jpg")
      * @Assert\File(mimeTypes={ "image/jpeg" })
      */
-    private $brochure;
+    private $image;
 
-    public function getBrochure()
+    public function getImage()
     {
-        return $this->brochure;
+        return $this->image;
     }
 
-    public function setBrochure($brochure)
+    public function setImage($image)
     {
-        $this->brochure = $brochure;
+        $this->image = $image;
 
         return $this;
     }

@@ -18,6 +18,7 @@ class ReviewType extends AbstractType
             ->add('description')
             ->add('rating')
             ->add('price')
+            ->add('retailers')
             ->add('product', EntityType::class, [
                 // list objects from this class
                 'class' => 'App:Product',

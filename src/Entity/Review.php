@@ -70,6 +70,27 @@ class Review
     private $description;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    private $retailers;
+
+    /**
+     * @return mixed
+     */
+    public function getRetailers()
+    {
+        return $this->retailers;
+    }
+
+    /**
+     * @param mixed $retailers
+     */
+    public function setRetailers($retailers): void
+    {
+        $this->retailers = $retailers;
+    }
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $price;

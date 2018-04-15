@@ -50,9 +50,9 @@ class ProductController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             // handle file
-            $file = $product->getBrochure();
+            $file = $product->getImage();
             $fileName = $fileUploader->upload($file);
-            $product->setBrochure($fileName);
+            $product->setImage($fileName);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
@@ -85,19 +85,19 @@ class ProductController extends Controller
      */
     public function edit(Request $request, Product $product, FileUploader $fileUploader)
     {
-        $fileName = $product->getBrochure();
-        $product->setBrochure(
-            new File($this->getParameter('image_directory').'/'.$fileName)
-        );
+        $fileName = $product->getImage();
+//        $product->setBrochure(
+//            new File($this->getParameter('image_directory').'/'.$fileName)
+//        );
 
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // handle file
-            $file = $product->getBrochure();
+            $file = $product->getImage();
             $fileName = $fileUploader->upload($file);
-            $product->setBrochure($fileName);
+            $product->setImage($fileName);
 
             $this->getDoctrine()->getManager()->flush();
 
