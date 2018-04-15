@@ -15,6 +15,7 @@
                 <th>Description</th>
                 <th>Image</th>
                 <th>Category</th>
+                <th>Brochure</th>
                 <th>Price Range</th>
                 <th>User</th>
                 <th>Actions</th>
@@ -31,6 +32,7 @@
                 <td>{{ product.description }}</td>
                 <td>{{ product.image }}</td>
                 <td>{{ product.category.name }}</td>
+                <td><img src = "/images/{{ product.brochure }}" height="42" width="42"></td>
                 <td>{{ product.price.range }}</td>
                 <td>{{ product.username }}</td>
 

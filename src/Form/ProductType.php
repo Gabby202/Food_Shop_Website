@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ProductType extends AbstractType
 {
@@ -16,6 +17,11 @@ class ProductType extends AbstractType
             ->add('username', \Symfony\Component\Form\Extension\Core\Type\HiddenType::class)
             ->add('description')
             ->add('image')
+            ->add('brochure', FileType::class, [
+                'label' => 'Brochure (PDF file)',
+                'data_class' => null,
+                'required' => false
+            ])
             ->add('category', EntityType::class, [
                 // list objects from this class
                 'class' => 'App:Category',

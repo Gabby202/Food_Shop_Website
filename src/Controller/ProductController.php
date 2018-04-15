@@ -11,6 +11,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+use Symfony\Component\HttpFoundation\File\File;
+
+use App\Service\FileUploader;
+
 /**
  * @Route("/product", name="product_")
  */
@@ -35,7 +41,7 @@ class ProductController extends Controller
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_USER')")
      */
-    public function new(Request $request)
+    public function new(Request $request, FileUploader $fileUploader): Response
     {
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
@@ -43,6 +49,11 @@ class ProductController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // handle file
+            $file = $product->getBrochure();
+            $fileName = $fileUploader->upload($file);
+            $product->setBrochure($fileName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
             $em->flush();
@@ -72,12 +83,22 @@ class ProductController extends Controller
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_USER')")
      */
-    public function edit(Request $request, Product $product)
+    public function edit(Request $request, Product $product, FileUploader $fileUploader)
     {
+        $fileName = $product->getBrochure();
+        $product->setBrochure(
+            new File($this->getParameter('image_directory').'/'.$fileName)
+        );
+
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // handle file
+            $file = $product->getBrochure();
+            $fileName = $fileUploader->upload($file);
+            $product->setBrochure($fileName);
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('product_edit', ['id' => $product->getId()]);
@@ -86,6 +107,8 @@ class ProductController extends Controller
         return $this->render('product/edit.html.twig', [
             'product' => $product,
             'form' => $form->createView(),
+            'fileName' => $fileName,
+
         ]);
     }
 
