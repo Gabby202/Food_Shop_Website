@@ -23,7 +23,7 @@ class ReviewType extends AbstractType
                 // list objects from this class
                 'class' => 'App:Product',
                 // use the 'Category.name' property as the visible option string
-                'choice_label' => 'description',
+                'choice_label' => 'title',
             ]);
     }
 
